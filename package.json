@@ -1,0 +1,26 @@
+{
+  "name": "protractor-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "start": "webdriver-manager start",
+    "test": "protractor protractor.config.js"
+  },
+  "author": "Luan Gong <luan.gong@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luangong/protractor-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luangong/protractor-example/issues"
+  },
+  "homepage": "https://github.com/luangong/protractor-example#readme",
+  "description": "",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "protractor": "^5.3.1"
+  }
+}
