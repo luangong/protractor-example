@@ -1,0 +1,22 @@
+language: node_js
+
+node_js:
+  - '8'
+
+# Upgrade to the latest version of npm
+before_install:
+  - npm i -g npm
+
+# Speed up installation of packages
+install:
+  - npm ci
+
+script:
+  - npm run lint
+  - npm test
+
+addons:
+  sauce_connect:
+    username: luangong
+    access_key:
+      secure: 'kj6hWQERwZY31qmntOgpVxbd1qCsx2hhJ+A9HOsxAcjxdjffqvFNjNCmw5sxxQwxKSiMZ8Hu0p7xLOH1akO8TAN97jIXTe2aSuT+acBoqVmMy8CLrk7k6nvdzX3z7q75t4bh3Z1U+Qve4blZswdbdruNJ+Yp3xKbp6Da9uf1BYXHeNFhk0E38sTHgLrDFn9bL3CczNEzzdPS+oaGkNhy75bmElh4SONdEmQqMeIHQTf02/v4jqafhstlEyPq+5FEt1tDGmWUwxr7KuUc0/gU/PyAYH5fenziCE6o4IpTWyGGaUGHoDcUJ2YR3ymtrUmEro74ntnY7AVcFaV3kOh8D0qXckUGjOdsnARFK827fBq+Cy6aHj1y7UE/L/7j4E0/UW/q4+JvRll30b38yMUiyMLab8TY4hxduN9n+XJ33sa8CZ3bW7CmGIry4v0kadaS7Vrgmzn3HcwzhmL2rTA88RtedjYEOAaGNrgD1coKKuwCnryA8O6GONwUhIReyx0dweIjpDU+JVv7i02lqwDvpJzKIeSx/JMLb+IJQtcK9Feu1TungFz2OzhdmNwBpwfiZD+PSfCW721VFR7YyTxqntFNA1QdQAuNYogO8yysJxK3UdlhepczZGZJ8HMHW4Sbz7t7i3oZPPO1bLmxLdTNDFzLEOidUBwETgum1OrRfbk='
