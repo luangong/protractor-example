@@ -4,9 +4,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "update": "webdriver-manager update",
-    "start": "webdriver-manager start",
-    "test": "protractor protractor.config.js"
+    "test": "protractor"
   },
   "author": "Luan Gong <luan.gong@gmail.com>",
   "license": "ISC",
