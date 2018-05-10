@@ -52,46 +52,54 @@ if (process.env.CI) {
   config.sauceUser = process.env.SAUCE_USERNAME;
   config.sauceKey = process.env.SAUCE_ACCESS_KEY;
   config.sauceBuild = process.env.TRAVIS_BUILD_NUMBER;
+  config.maxSessions = 5;     // our Sauce Labs account has a concurrency limit of 5 VMs.
 
   config.multiCapabilities = [
     ...['8', '9', '10', '11'].map(version => ({
       platform: 'Windows 7',
       browserName: 'internet explorer',
-      version: String(version),
+      version,
       name: `Internet Explorer ${version} on Windows 7`
     })),
 
     ...['13', '14', '15', '16'].map(version => ({
       platform: 'Windows 10',
       browserName: 'microsoftedge',
-      version: String(version),
+      version,
       name: `Microsoft Edge ${version} on Windows 10`
     })),
 
-    {
-      platform: 'OS X 10.9',
+    ...[
+      [ 'OS X 10.9',   '7' ],
+      [ 'OS X 10.10',  '8' ],
+      [ 'OS X 10.11',  '9' ],
+      [ 'OS X 10.11',  '10' ],
+      [ 'macOS 10.12', '10' ],
+      [ 'macOS 10.12', '11' ],
+      [ 'macOS 10.13', '11' ]
+    ].map(([platform, version]) => ({
+      platform,
       browserName: 'safari',
-      version: '7',
-      name: 'Safari 7 on OS X Mavericks 10.9'
-    }
+      version,
+      name: `Safari ${version} on ${platform}`
+    }))
   ];
 
-  // There are some compatibility issues with Chrome 28 and below
-  for (let version = 29; version <= 29 /* 66 */; version++) {
+  for (let offset = 0; offset < 4; offset++) {
     config.multiCapabilities.push({
       platform: 'Windows 7',
       browserName: 'chrome',
-      version: String(version),
-      name: `Chrome ${version} on Windows 7`
+      version: `latest-${offset}`,
+      name: `Chrome latest-${offset} on Windows 7`
     });
   }
 
-  for (let version = 4; version <= 4 /* 59 */; version++) {
+  for (let offset = 0; offset < 4; offset++) {
     config.multiCapabilities.push({
       platform: 'OS X 10.9',
       browserName: 'firefox',
-      version: String(version),
-      name: `Firefox ${version} on OS X Mavericks 10.9`
+      version: `latest-${offset}`,
+      name: `Firefox latest-${offset} on OS X Mavericks 10.9`
     });
   }
 
