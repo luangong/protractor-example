@@ -51,6 +51,7 @@ if (process.env.CI) {
 
   config.sauceUser = process.env.SAUCE_USERNAME;
   config.sauceKey = process.env.SAUCE_ACCESS_KEY;
+  config.sauceBuild = process.env.TRAVIS_BUILD_NUMBER;
 
   config.multiCapabilities = [
     ...['8', '9', '10', '11'].map(version => ({
@@ -96,8 +97,7 @@ if (process.env.CI) {
 
   config.multiCapabilities.forEach(capabilities => {
     capabilities.screenResolution = '1280x960';
-    capabilities.build = process.env.TRAVIS_BUILD_NUMBER;
-    capabilities.tags = [`Node v${process.env.TRAVIS_NODE_VERSION}`, 'CI'];
+    capabilities.tags = [`Node ${process.env.TRAVIS_NODE_VERSION}`, 'CI'];
   });
 }
 
