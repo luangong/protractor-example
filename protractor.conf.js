@@ -51,7 +51,7 @@ if (process.env.CI) {
 
   config.sauceUser = process.env.SAUCE_USERNAME;
   config.sauceKey = process.env.SAUCE_ACCESS_KEY;
-  config.sauceBuild = process.env.TRAVIS_BUILD_NUMBER;
+  config.sauceBuild = `protractor-example#${process.env.TRAVIS_BUILD_NUMBER}`;
   config.maxSessions = 5;     // our Sauce Labs account has a concurrency limit of 5 VMs.
 
   config.multiCapabilities = [
