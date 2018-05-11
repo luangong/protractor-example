@@ -31,6 +31,10 @@ const config = {
   // https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs
   SELENIUM_PROMISE_MANAGER: false,
 
+  jasmineNodeOpts: {
+    defaultTimeoutInterval: 20000,
+  },
+
   onPrepare: async() => {
     // browser.ignoreSynchronization = true;
     // https://github.com/angular/protractor/blob/master/docs/timeouts.md#waiting-for-angular-on-page-load
