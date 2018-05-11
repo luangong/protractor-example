@@ -32,7 +32,7 @@ const config = {
   SELENIUM_PROMISE_MANAGER: false,
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 20000,
+    defaultTimeoutInterval: 40000,
   },
 
   onPrepare: async() => {
