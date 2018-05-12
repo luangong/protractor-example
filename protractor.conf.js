@@ -2,16 +2,13 @@
 
 const config = {
   directConnect: true,
-  specs: ['google.spec.js'],
+  specs: ['*.spec.js'],
 
   multiCapabilities: [{
     browserName: 'chrome',
     chromeOptions: {
       args: [
-        // 'force-device-scale-factor=1',
         // 'headless',
-        // 'ash-host-window-bounds=1920x1080*1',
-        // 'window-size=1920,1080'
         'disable-infobars',
       ]
     }
@@ -32,12 +29,14 @@ const config = {
   SELENIUM_PROMISE_MANAGER: false,
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 40000,
+    defaultTimeoutInterval: 100000,
   },
 
+
   onPrepare: async() => {
-    // browser.ignoreSynchronization = true;
+    // https://github.com/angular/protractor/blob/master/lib/browser.ts
     // https://github.com/angular/protractor/blob/master/docs/timeouts.md#waiting-for-angular-on-page-load
+    // browser.ignoreSynchronization = true;
     browser.waitForAngularEnabled(false);
     return browser.getProcessedConfig().then((/* config */) => {
       // config.capabilities is the CURRENT capability being run, if you are using

@@ -1,17 +1,30 @@
-describe('angularjs homepage todo list', function() {
-  it('should add a todo', function() {
-    browser.get('https://angularjs.org');
+'use strict';
 
-    element(by.model('todoList.todoText')).sendKeys('write first protractor test');
-    $('[value="add"]').click();
+describe('AngularJS homepage todo list', function() {
+  beforeAll(() => {
+    browser.ignoreSynchronization = false;
+  });
 
-    var todoList = element.all(by.repeater('todo in todoList.todos'));
-    expect(todoList.count()).toEqual(3);
-    expect(todoList.get(2).getText()).toEqual('write first protractor test');
+  it('should add a todo', async () => {
+    // Navigate to AngularJS homepage
+    await browser.get('https://angularjs.org');
 
-    // You wrote your first test, cross it off the list
-    todoList.get(2).element(by.css('input')).click();
-    var completedAmount = element.all(by.css('.done-true'));
-    expect(completedAmount.count()).toEqual(2);
+    // Add an item to the list
+    await element(by.model('todoList.todoText')).sendKeys('write first protractor test');
+    await $('[value="add"]').click();
+
+    // Verify
+    const todoList = await element.all(by.repeater('todo in todoList.todos'));
+    expect(todoList.length).toEqual(3);
+    expect(todoList[2].getText()).toEqual('write first protractor test');
+
+    // Cross the newly added item off the list
+    await todoList[2].element(by.css('input')).click();
+    const completedItems = await element.all(by.css('.done-true'));
+    expect(completedItems.length).toEqual(2);
+  });
+
+  afterAll(() => {
+    browser.ignoreSynchronization = true;
   });
 });
